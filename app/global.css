@@ -1,0 +1,10 @@
+.desc-course-banner{
+    display:inline-block;
+    width:200px;
+    height:300px;
+    margin:20px 10px;
+    padding:5px;
+    border-radius:5px;
+    box-shadow:2px 2px 10px 1px gray;
+    overflow:hidden;
+}
