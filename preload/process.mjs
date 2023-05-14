@@ -1,4 +1,4 @@
-import { mapColumn, mapCourseType } from '../lib/literals.mjs';
+import { mapColumn, mapCourseType, mapTerm } from '../lib/literals.mjs';
 import XLSX from 'xlsx';
 import fs from 'fs'
 class Courses{
@@ -17,6 +17,12 @@ class Courses{
             for(let key_name of key_names){
                 row[key_name] = conversion(row[key_name]);
             }
+        }
+    }
+
+    modifyRows(mappingFn){
+        for(let row of this.data){
+            row=mappingFn(row);
         }
     }
 
@@ -110,8 +116,9 @@ class Courses{
         for(let [index, row] of this.data.entries()){
             const new_row = {};
             for(let [key,  value] of Object.entries(mapColumn)){
-                new_row[key] = row[value];
-                
+                if(row[value]){
+                    new_row[key] = row[value];
+                }
             }
             new_row['id']=index+1;
             res.push(new_row);
@@ -128,7 +135,7 @@ courses.normalizeColumnName();
 console.log(courses.keys)
 courses.applyConversion(['year','sizeLimit','size'],parseInt)
 courses.applyConversion(['time','examTime'],(str)=>{
-    if(str.length){
+    if(str?.length){
         const arr = str.split("\r\n").map((x)=>{const y=x.split(" ");return {day:y[0],time:y[1]}});
         return arr;
     }
@@ -136,6 +143,23 @@ courses.applyConversion(['time','examTime'],(str)=>{
 })
 courses.applyConversion('type',(type)=>{
     return Object.keys(mapCourseType).find(key=>mapCourseType[key]===type)
+});
+courses.applyConversion('term',(term)=>{
+    return Object.keys(mapTerm).find(key=>mapTerm[key]===term);
+})
+
+courses.modifyRows((row)=>{
+    const LLC = row.LLC.split(':')
+
+
+    const lecture_str = LLC[0] ?? '0';
+    const lab_str = LLC[1] ?? '0';
+    const credits_str = LLC[2] ?? '0';
+    row["lecture"]=parseFloat(lecture_str);
+    row["lab"]=parseFloat(lab_str);
+    row["credits"]=parseFloat(credits_str);
+    return row;
+
 });
 
 courses.saveAsFile("data/2023_1.json");

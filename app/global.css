@@ -46,26 +46,6 @@
     transition:transform 0.2s;
 }
 
-.desc-course-banner.type-basicRequired{
-    background: linear-gradient(199deg, #ffb78e 0%, #fed979 100%);
-}
-.desc-course-banner.type-basicElective{
-    background: linear-gradient(199deg, #ffc6a6 0%, #ffe7aa 100%);
-}
-
-.desc-course-banner.type-majorRequired{
-    background: linear-gradient(199deg, #51cffd 0%, #695eff 100%);
-}
-.desc-course-banner.type-majorElective{
-    background: linear-gradient(199deg, #9bcdfe 0%, rgb(235, 133, 255) 100%);
-}
-
-.desc-course-banner.type-mandatoryGeneral{
-    background: linear-gradient(199deg, #65ffa8 0%, #fffc62 100%);
-}
-.desc-course-banner[class^="type-h"]{
-    background: linear-gradient(199deg, #a2ffcb 0%, #fcfba9 100%);
-}
 
 .desc-course-banner:hover::before{
     transform:ScaleY(1);
@@ -105,11 +85,69 @@
     font-size:0.9em;
 }
 
-.desc-course-detail{
+.desc-course-detail-header{
+    position:relative;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+}
 
+.desc-course-detail-property-number{
+    position:relative;
+    font-size:1.3em;
+    box-sizing:border-box;
+
+    width:240px;
+    padding-left:18px;
+    padding-top:10px;
+    padding-bottom: 4px;
+    color:rgb(72, 71, 71);
+    background-position-y:bottom;
+    background-repeat:no-repeat;
+    background-image:url('/res/desc-course-detail-property-number-background.svg')
 }
 
 
+.desc-course-detail-property-title{
+    padding-left:10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    color:black;
+    background:linear-gradient(199deg, #7cc8f2 0%, #b9f6f0 100%);
+    font-size:2em;
+}
+.desc-course-detail-property-syllabus{
+    display: flex;
+}
+.desc-course-detail-property-syllabus a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0 20px;
+    margin:0 5px;
+    background-color:rgb(148, 148, 255);
+    color:white;
+    font-size:1.2em;
+    text-decoration: none;
+    cursor:pointer;
+    border-radius:2px;
+    transition:background-color 0.1s;
+}
+
+.desc-course-detail-property-syllabus a:hover{
+    background-color:rgb(34, 93, 255);
+}
+.desc-course-detail-property-instructor{
+    padding-left:10px;
+    padding-top:2px;
+    padding-bottom:2px;
+    font-size:1.0em;
+    width:250px;
+    box-sizing:border-box;
+    background:linear-gradient(67deg, #ffe7de 0%, #fbffdf 80%,transparent 100%);
+    color:rgb(84, 111, 72);
+}
 .popup-root{
     display:flex;
     justify-content:center;
@@ -146,6 +184,7 @@
 }
 
 
+
 .skeleton{
     background:linear-gradient(90deg,#D8D8D8 30%,#EEE 50%, #D8D8D8 70%);
     background-size:200px 200px;
@@ -158,3 +197,27 @@
     }
 }
 
+
+
+
+.type-basicRequired{
+    background: linear-gradient(199deg, #ffb78e 0%, #fed979 100%);
+}
+.type-basicElective{
+    background: linear-gradient(199deg, #ffc6a6 0%, #ffe7aa 100%);
+}
+
+.type-majorRequired{
+    background: linear-gradient(199deg, #51cffd 0%, #b4aeff 100%);
+}
+.type-majorElective{
+    background: linear-gradient(199deg, #9bcdfe 0%, rgb(235, 133, 255) 100%);
+}
+
+.type-mandatoryGeneral{
+    background: linear-gradient(199deg, #65ffa8 0%, #fffc62 100%);
+}
+
+[class^="type-h"]{
+    background: linear-gradient(199deg, #a2ffcb 0%, #fcfba9 100%);
+}

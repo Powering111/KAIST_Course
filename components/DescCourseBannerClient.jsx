@@ -10,7 +10,6 @@ export async function DescCourseBannerClient(params={}){
     }
 
     function handleClick(e){
-        console.log(`clicked ${course.id}`);
         eventManager.emit("showPopup",
             <DescCourseDetail courseId={course.id}/>
         );
@@ -28,10 +27,10 @@ export async function DescCourseBannerClient(params={}){
     );
 }
 
-function DescCourseBannerProperty({column="DEF_COL", value="DEF_VAL"}){
+function DescCourseBannerProperty({column="", value=""}){
 
     return (
-        <div className={`desc-course-banner-property desc-course-banner-property-${column}`}>
+        <div className={`desc-course-banner-property ${column!=="" && `desc-course-banner-property-${column}`}`}>
             <span className="desc-course-banner-property-value">{value}</span>
         </div>
     )

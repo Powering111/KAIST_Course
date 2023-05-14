@@ -5,7 +5,7 @@ import { ListContainer } from '@/components/list.jsx';
 export default async function Page() {
 
   return <>
-    {[...Array(300).keys()].map(x=>{
+    {[...Array(64).keys()].map(x=>x*5).map(x=>{
       return (
         <Suspense fallback={<DescCourseBannerSkeleton/>}>
         <DescCourseBanner key={x} courseId={x+1}></DescCourseBanner>
