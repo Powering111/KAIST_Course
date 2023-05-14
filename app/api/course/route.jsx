@@ -8,9 +8,10 @@ export async function GET(request){
         return NextResponse.json({valid:false});
     }
     const courses = await getCourses();
-    const selected = courses.filter(course=>course.id===id);
-    if(selected.length===0){
+    const selected = courses.find(course=>course.id===id);
+    if(selected===undefined){
         return NextResponse.json({valid:false});
     }
-    return NextResponse.json({valid:true,course:selected[0]});
+    console.log(id)
+    return NextResponse.json({valid:true,course:selected});
 }

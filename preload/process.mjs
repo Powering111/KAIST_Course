@@ -1,4 +1,4 @@
-import { mapColumn } from '../lib/literals.mjs';
+import { mapColumn, mapCourseType } from '../lib/literals.mjs';
 import XLSX from 'xlsx';
 import fs from 'fs'
 class Courses{
@@ -113,7 +113,6 @@ class Courses{
                 new_row[key] = row[value];
                 
             }
-            console.log(index);
             new_row['id']=index+1;
             res.push(new_row);
         }
@@ -127,7 +126,7 @@ console.log("Processing started.")
 const courses = new Courses("data/Courses Offered_2023_1_학사_연구제외.xls");
 courses.normalizeColumnName();
 console.log(courses.keys)
-courses.applyConversion(['sizeLimit','size'],parseInt)
+courses.applyConversion(['year','sizeLimit','size'],parseInt)
 courses.applyConversion(['time','examTime'],(str)=>{
     if(str.length){
         const arr = str.split("\r\n").map((x)=>{const y=x.split(" ");return {day:y[0],time:y[1]}});
@@ -135,6 +134,9 @@ courses.applyConversion(['time','examTime'],(str)=>{
     }
     else return [];
 })
+courses.applyConversion('type',(type)=>{
+    return Object.keys(mapCourseType).find(key=>mapCourseType[key]===type)
+});
 
 courses.saveAsFile("data/2023_1.json");
 console.log("Processing ended.")
