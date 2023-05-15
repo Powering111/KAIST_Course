@@ -3,6 +3,20 @@
     --desc-course-banner-height:300px;
 }
 
+*::-webkit-scrollbar{
+    background:none;
+    max-width:12px;
+}
+*::-webkit-scrollbar-thumb{
+    border-radius:6px;
+    background-color:#dfdfdf;
+}
+
+*::-webkit-scrollbar-thumb:hover{
+    background-color:#cfcfcf;
+}
+
+
 .desc-course-banner{
     display:inline-flex;
     flex-direction: column;
@@ -148,6 +162,37 @@
     background:linear-gradient(67deg, #ffe7de 0%, #fbffdf 80%,transparent 100%);
     color:rgb(84, 111, 72);
 }
+
+
+.list-container{
+    display:block;
+    height:500px;
+    width:200px;
+    overflow-y:auto;
+    border:1px solid black;
+    border-radius:5px;
+}
+
+.list-menu{
+    margin-bottom:5px;
+    padding:2px;
+}
+
+.list-course{
+    display:block;
+    padding:3px;
+    margin:2px;
+    border-radius:2px;
+    background-color:#dff7ff;
+}
+.list-course:hover{
+    background-color:#a0e6ff;
+}
+
+
+
+
+
 .popup-root{
     display:flex;
     justify-content:center;
@@ -220,4 +265,31 @@
 
 [class^="type-h"]{
     background: linear-gradient(199deg, #a2ffcb 0%, #fcfba9 100%);
+}
+
+
+.icon-button{
+    box-sizing:border-box;
+    width:30px;
+    height:30px;
+    background-color:rgb(237, 237, 237);
+    border:none;
+    outline:none;
+    border-radius:5px;
+    cursor:pointer;
+    padding:5px;
+    background-position:center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-origin:content-box;
+    transition:transform 0.1s, background-color 0.1s;
+}
+
+.icon-button:hover{
+    background-color:rgb(216, 214, 214);
+    transform:translate(-1px,-1px);
+}
+
+.icon-button:active{
+    transform:translate(0,0);
 }
