@@ -1,14 +1,20 @@
-export async function ListContainer(){
-    const res = await fetch("http://localhost:3000/api/list");
-    if(!res.ok){
-        throw new Error("fetch api/link failure");
-    }
-    const CourseList = res.json();
+'use client'
 
+import { useAPI } from "@/lib/useAPI";
+
+export function ListContainer(){
+    const {data,error,isLoading} = useAPI("/api/list");
+    if(error){
+        return <div className="list-container">Error!</div>
+    }
+    if(isLoading){
+        return <div className="list-container skeleton">loading...</div>
+    }
+    console.log(data);
     return (
         <div className="list-container">
-            {CourseList.map((course)=>{
-            return <ListCourse course={course}></ListCourse>
+            {data.courses.map((course)=>{
+                return <ListCourse key={course.id} course={course}></ListCourse>
             })}
         </div>
     )
@@ -16,6 +22,6 @@ export async function ListContainer(){
 
 export function ListCourse({course}){
     return (
-        <div className="list-course">{}</div>
+        <div className="list-course">LIST{course.title}</div>
     )
 }
